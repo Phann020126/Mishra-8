@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import differential_evolution
 
-
+# Define Mishra 8 function
 def mishra_8(x):
     x1, x2 = x
     term1 = (
@@ -21,14 +21,23 @@ def mishra_8(x):
     return 0.001 * (np.abs(term1) * np.abs(term2)) ** 2
 
 
-def de_solver():
+def de_solver(seed=1):
 
+    # Get solution using differential evolution
     solution = differential_evolution(
         mishra_8,
         bounds=[(-10, 10), (-10, 10)],
-        seed=6,
+        seed=seed,
+        disp=False
     )
 
-    return solution.fun, solution.x
+    return solution.x, solution.fun
 
-print(de_solver())
+
+# Print the results
+if __name__ == "__main__":
+
+    variables, evaluation = de_solver()
+
+    print("Best solution found:", variables)
+    print("Best objective value:", evaluation)
