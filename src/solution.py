@@ -21,11 +21,14 @@ def mishra_8(x):
     return 0.001 * (np.abs(term1) * np.abs(term2)) ** 2
 
 
-result = differential_evolution(
-    mishra_8,
-    bounds=[(-5, 5), (-5, 5)],
-    seed=1,
-)
+def de_solver():
 
+    solution = differential_evolution(
+        mishra_8,
+        bounds=[(-10, 10), (-10, 10)],
+        seed=6,
+    )
 
-print(result.fun, " ", result.x)
+    return solution.fun, solution.x
+
+print(de_solver())
