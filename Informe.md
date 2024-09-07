@@ -1,5 +1,7 @@
 # Informe del trabajo de algoritmia de Modelos de Optimización
 
+Daniel Toledo Martínez - C311
+
 ## Resumen
 
 En el presente trabajo se presenta una solución del problema de **mishra**, utilizando el método **Differential Evolution**, así como una breve explicación de por qué algunos de los métodos estudiados en clase no pueden ser utilizados para resolver el problema.
