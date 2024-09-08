@@ -6,6 +6,22 @@ Daniel Toledo Martínez - C311
 
 En el presente trabajo se presenta una solución del problema de **mishra**, utilizando el método **Differential Evolution**, así como una breve explicación de por qué algunos de los métodos estudiados en clase no pueden ser utilizados para resolver el problema.
 
+## Descripción del Problema
+
+Las soluciones que a continuación se presentarán se encuentran enfocadas en la resolución del problema:
+
+*f* $_{81}(x) = 0.001\left[\left|x_1^{10} - 20x_1^9 + 180x_1^8 - 960x_1^7 + 3360x_1^6 - 8064x_1^5 + 1334x_1^4 - 15360x_1^3 + 11520x_1^2 - 5120x_1 + 2624\right|\left|x_2^4 + 12x_2^3 + 108x_2 + 81 \right|\right]^2$
+
+Para simplificar la explicación vamos a llamar $p_1$ al polinomio que depende de $x_1$ y $p_2$ al polinomio que depende de $x_2$, entonces nuestro problema se puede escribir como:
+
+*f* $_{81}(x) = 0.001 [|p_1||p_2|]^2$
+
+$p_1 = x_1^{10} - 20x_1^9 + 180x_1^8 - 960x_1^7 + 3360x_1^6 - 8064x_1^5 + 1334x_1^4 - 15360x_1^3 + 11520x_1^2 - 5120x_1 + 2624$
+
+$p_2 = x_2^4 + 12x_2^3 + 108x_2 + 81$
+
+El problema se caracteriza por tener un producto de valores absolutos, lo que provoca que los ceros de cada uno de los polinomios hagan 0 la evaluación de la función, por lo que el problema tiene infinitos mínimos globales ya que por la propia orientación sabemos que el valor del óptimo global es 0. Además el alto grado de los polinomios provoca que nos enfrentemos a un problema no convexo y con numerosos mínimos locales (**multimodal**), resultado de las multiples raíces y puntos críticos, lo que sugiere la presencia de varios valores de $x_1$ y $x_2$ donde la función cambia de dirección. Además, la naturaleza cuadrática de la función suaviza el comportamiento y penaliza cualquier alejamiento de los puntos críticos, lo que también favorece la existencia de varios mínimos. Por datos sabemos que el problema es **continuo** y **diferenciable**. El problema es **no-separable** cuando las variables del problema están interrelacionadas y no pueden optimizarse de forma independiente. Esto significa que la función objetivo no puede descomponerse en subproblemas más pequeños que involucren solo una o algunas de las variables. Sabemos también que es **No-escalable** lo que significa que al aumentar el tamaño del problema,  la dificultad crece desproporcionadamente. Esto ocurre por la interdependencia de las variables y el crecimiento exponencial de posibles soluciones a explorar.
+
 ## Métodos no aceptados
 
 La función de mishra en cuestión no puede ser resuelta por los siguientes métodos:
@@ -41,7 +57,7 @@ Se seleccionó este método debido a que el problema de **mishra** en cuestión 
 
 #### Particle Swarm Optimization (PSO)
 
-**Particle Swarm Optimization** es un método basado en poblaciones, inspirado en el comportamiento social de las bandadas de pájaros o los bancos de peces. Su funcionamiento consiste en inicializar un grupo de posibles soluciones (partículas) en el espacio de búsqueda, cada una de las partículas posee una posición en el espacio que representa una solución candidata y la dirección y velocidad con que se mueven, la posición se evalúa en la función objetivo para determinar su calidad. Cada partícula recuerda su mejor posición y el enjambre almacena la mejor posición global. Durante cada iteración la velocidad de las partículas se actauliza teniendo en cuenta la velocidad actual, la diferencia entre la posición actual y el mejor resultado local, y la diferencia entre la posición actual y el máximo global. La partícula se mueve por el espacio utilizando la nueva velocidad calculada. El algoritmo termina cuando se cumple un criterio de detención, como un número máximo de iteraciones o cuando las partículas convergen a una solución óptima.
+**Particle Swarm Optimization** es un método basado en poblaciones, inspirado en el comportamiento social de las bandadas de pájaros o los bancos de peces. Su funcionamiento consiste en inicializar un grupo de posibles soluciones (partículas) en el espacio de búsqueda, cada una de las partículas posee una posición en el espacio que representa una solución candidata y la dirección y velocidad con que se mueven, la posición se evalúa en la función objetivo para determinar su calidad. Cada partícula recuerda su mejor posición y el enjambre almacena la mejor posición glo*f* $_{81}(x) = 0.001[|x_1^{10} - 20x_1^9 + 180x_1^8 - 960x_1^7 + 3360x_1^6 - 8064x_1^5 + 1334x_1^4 - 15360x_1^3 + 11520x_1^2 - 5120x_1 + 2624||x_2^4 + 12x_2^3 + 108x_2 + 81 |]^2$bal. Durante cada iteración la velocidad de las partículas se actauliza teniendo en cuenta la velocidad actual, la diferencia entre la posición actual y el mejor resultado local, y la diferencia entre la posición actual y el máximo global. La partícula se mueve por el espacio utilizando la nueva velocidad calculada. El algoritmo termina cuando se cumple un criterio de detención, como un número máximo de iteraciones o cuando las partículas convergen a una solución óptima.
 
 Este método también puede ser utilizado para resolver el problema, aunque no da tan buenos resultados como el anteriormente explicado, debido a que puede estancarse en los mínimos locales, y su parámetro puede verse limitado por la selección de los hiperparámetros. A pesar de esto el método posee un buen balance entre exploración y explotación, y converge de manera rápida, pero no siempre encuentra los mejores resultados.
 
